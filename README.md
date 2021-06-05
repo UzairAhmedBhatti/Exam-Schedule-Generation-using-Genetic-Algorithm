@@ -1,57 +1,23 @@
-# Exam-Schedule-Generation-using-Genetic-Algorithm
-Introduction And Methodology
-● The input data class reads data from registration, room capacity, general.
-● Gene represents one block of timetable(list of courses in one slot).
-● The chromosome class is for creation of chromosomes and random
-numbers.Chromosome is represented as a 2D Matrix with row as no of days x
-column as slots(A Complete Timetable).The class contains a CreateChromosome
-function which randomly initialise the chromosome.
-● Fitness function, crossovers and mutation is also implemented here.Chromosome
-Comparator just compares two chromosomes by taking the difference of their
-fitnesses.
-● In our main program, firstly input is taken from files followed by the creation of
-chromosomes.Population of 100 chromosomes is created in which each
-chromosome is randomly generated.
-● Next Step includes calculation of each chromosomes fitness and on the basis of
-fitness,population is sorted
-● Target is set and then the Genetic Algorithm is applied including creating new
-generations and doing mutations and crossovers.
-● Selection criteria is elitism meaning 10% of fittest chromosomes in a population are
-automatically added to the next generation while from the remaining 90% ,we select
-the parents for the crossover to generate new offspring for the next
-generation.Thus,mutation is introduced to maintain randomness in population and
-crossover is achieved through the combination of two parent chromosomes genes.
-● Finally the new population is created and for this fitness is calculated for each
-chromosome and the process is repeated until we get one such
-chromosome(TimeTable) which has the targeted fitness.
-● Our fitness function goes by all numbers of days for every slot and assigns points on
-the basis of the following conditions.
-1. Timetable must have all courses.
-2. No of students with 2 exams in the same slot should be minimum.
-3. No student has more than two exams in one slot.
-4. No of students giving exams in one slot should not be more than total
-capacity.
-5. No of students with 2 exams in consecutive slots should be minimum
-6. No student has no exams in more than 2 consecutive slots.
-Our code is successfully creating generations along with changing fitness along with
-successful crossover,mutation and selection. However after approximately 200 generations
-the value of fitness functions becomes constant.The fitness value increases with the
-increasing generations.Once fitness becomes constant,we take the final generations top
-fitness chromosome and then apply local search.In local search we simply create new
-childs from this chromosome and continue to create generations after generations.For
-each child we calculate fitness and add it to the current generation.Every child is created by
-randomly changing the slots of the Chromosome supplied by GA.Moreover,as fitness
-becomes constant then again in local search we return the top Chromosome closer to our
-target fitness.
-We have made two fitness functions and attached are the experiment results of the fitness
-function one. The generation and fitness are changing but due to the crossover of two
-parents slots become empty and the schedule could not be found.
-In the other fitness function, we abide by the condition that total courses in slots equals the
-total number of courses in the data and that no course is repeated. However, as a result
-our fitness does not show significant change but on the other side we are successful in
-getting a schedule.
-Along with this we have also implemented the local search.
-2
-We have applied GA and local search but somehow due to time constraint,we feel that the
-fitness function needs to be reevaluated along with local search code.However,we have
-tried to deliver our best.
+Exam Schedule Generation by Searching (Local and Evolutionary)
+
+Manually generating a Mid-term exam schedule for NUCES-FAST is an involved task as a diverse set of constraints must be enforced while creating the schedule. In this assignment we are going to test the famous natured inspired Genetic Algorithm combined with local search for solving the scheduling problem.
+Major inputs, for creating an exam schedule of n students registered in m courses, will be as follows
+•	A file named "registration.data" that contains course registration status in the form of a 2D   m x n array with space separated entries stored in row major order. Entry a[i][j] is 1 if students no j is registered in course i and 0 otherwise.
+•	A file named "capacity.room" containing a space separated list of room capacities available for scheduling.
+•	A file named "general.info" containing a number specifying total exam days followed by a single number giving the exam slots per day for each room.
+Our main job in this assignment includes the design and implementation of
+•	An efficient representation of a chromosome (representation of a complete solution)
+•	Defining the crossover and mutation operator for your representation of chromosome.
+•	Defining fitness function
+•	A generation of chromosome population
+•	GA for solving the problem (i.e. repeatedly creating the next generation from existing generation until a termination criteria is met)
+•	Refining the solution using local search
+
+As any reasonable exam schedule will have all of the following properties therefore your fitness function must consider all of these properties for computing fitness of a chromosome.
+1.	All exams must be scheduled within the given number of days.
+2.	Total students taking exam in one given slots must be less than the total room capacity.
+3.	Number students having two exams in one given slot must be minimized.
+4.	Number of students having exams on two consecutive slots must be minimized.
+5.	Not even a single student can have more than two exams in one slot.
+6.	Not even a single student can have more than two exams in consecutive lot.
+Not even a single student can have more than three exams in one given day.
